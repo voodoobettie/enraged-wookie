@@ -1,5 +1,5 @@
 // this file contains the data we need for the gallery
-// The main object, "gallery" contains an array of album
+// The main object, "animals_data" contains an array of album
 // each album contains an array of photos
 // (plus a name and a thumbnail image)
 // The photos contain an image src and some metadata
