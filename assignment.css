@@ -1,3 +1,7 @@
 /* put your css code here */
 
 h1 {padding-top: 20px;}
+
+.category_option{color:green; 
+	display: inline-block;
+	padding-right: 20px;}
