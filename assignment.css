@@ -1,7 +1,28 @@
 /* put your css code here */
 
-h1 {padding-top: 20px;}
+h1 {font-family: "Helvetica Neue", Helvetica, Arial, "Roboto sans" sans-serif;
+	color: #fff; 
+	font-size: 3em;
+	}
 
-.category_option{color:green; 
-	display: inline-block;
-	padding-right: 20px;}
+body {background: #333;}
+
+.carousel { background: #fff; 
+}
+
+.carousel-linked-nav,
+.item img {
+  display: block; 
+  margin: 0 auto;
+}
+
+.carousel-linked-nav {
+  width: 120px;
+  margin-bottom: 20px;   
+}
+
+.carousel-caption { 
+	font-size: 1.3em;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Roboto sans" sans-serif;
+	background: #000;
+	opacity: 0.5;}

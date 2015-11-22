@@ -3,6 +3,12 @@
 	var category_template;
 	var test_template;
 
+	Handlebars.registerHelper('dotdotdot', function(str) {
+	  if (str.length > 100)
+	    return str.substring(0,100) + '...';
+	  return str;
+	});
+
 	// vars to store current album and photo
 	var current_category = animals_data.category[0];
 	// var current_photo = current_category.animals[0]; // trying to figure out which var is undefined
@@ -20,6 +26,9 @@
 		// Photo templates
 		var source = $("#category-template").html();
 		category_template = Handlebars.compile(source);
+
+		source = $("#slideshow-template").html();
+		slideshow_template = Handlebars.compile(source);
 
 
 		//Click on category thumbnail
@@ -56,9 +65,45 @@
 			})
 		});
 
+		$("#slideshow-tab").click(function () {
+		showTemplate(slideshow_template, current_category);
+		$(".nav-tabs .active").removeClass("active");
+		$(".slideshow-tab").addClass("active");
+	});
 
-		$("#categories-tab").click();	// select the albums tab with jQuery
+	// thumbnail jQuery
+		$(".thumbnail").click(function (event){
+		var imgNum = $(this).data("id");
+		});
+		//var image = data.images[imgNum];
+		var index = $(this).data("id");
+
+		$("#categories-tab").click();	// select the albums tab with jQuery to show as "first tab"
 		
 
+
+	//clicking photos shows all photos within current album
+	$("#photos-tab").click(function () {
+		console.log("should be showing photos");
+		showTemplate(animals_template, current_album);
+		$(".nav-tabs .active").removeClass("active");
+		$("#photos-tab").addClass("active");
+		$(".photo-thumbnail").click(function (){
+			// get the photo's index number using id
+			var index = $(this).data("id");
+			// set as current photo
+			current_photo = current_album.photos[index];			
+			// use single photo template
+			showTemplate(photo_template, current_photo);
+		});
+	});
+
+	$(".photo-thumbnail").click(function () {
+		console.log("clicked a photo");
+		var index = $(this).data("id");
+		current_photo = current_category.photos[index];
+		showTemplate(photo_template, current_photo);
+	});
+		
 
 	}); // end document ready function

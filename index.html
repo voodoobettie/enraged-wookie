@@ -27,15 +27,7 @@
 
 <body>
 
-<script id="test-template" type="text/x-handlebars-template">
-<div id="test">
-  <p>Here is some sample crap</p>
-  <p>{{ name }}</p>
-</div>
-</script>
-
-
-<div class="container-fluid">
+<div class="container-fluid container-fluid col-md-12">
 
 	<div class="page-header">
 		<h1>Animal Pictures</h1>
@@ -54,20 +46,86 @@
 
 	
 	<!--empty content div to place photos in via js-->
-	<div id="content"  class="container-fluid"  role="main">
 
-	</div>
+<div id="content">
 
 
 <script id="category-template" type="text/x-handlebars-template">
   {{#each category}}
-  <div class="category_option">
-    <img class="img-rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Crocodilia_collage.jpg/300px-Crocodilia_collage.jpg" alt="image1" />
-    <h4> {{name}} </h4>
-    <p>{{animals}}</p>
+<div class="row">
+  <div class="col xs-12 col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{animals.0.image1}}" alt="Category image">
+      <div class="caption">
+        <h3>{{ name }}</h3>
+        <p>{{ description }}</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
     </div>
+  </div>
+</div>
   {{/each}}
 </script>
+
+  </div>
+
+
+
+
+<script id="category-template" type="text/x-handlebars-template">
+{{ #each animal}}
+<p>{{ name }}</p>
+{{ /each }}
+</script>
+
+
+
+<!--The slideshow view, or as I prefer to call it, the carousel view, wheee!-->
+
+<script id="slideshow-template" type="text/x-handlebars-template">
+<div class="row">
+
+  <div class="col-md-6">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+
+      <ol class="carousel-linked-nav pagination">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+      </ol>
+
+    <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+        <p>test</p>
+          {{#each animals}}
+            <div class="item {{#if @first}}active{{/if}}">
+             <img class="carousel-img" src="{{image1}}" alt=""/> 
+            <div class="carousel-caption">
+              {{ dotdotdot description }}
+            </div>
+          </div> <!-- / carousel item -->
+          {{/each}}
+
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+    </div> <!-- end carousel --> 
+  </div> <!-- end col -->
+</div> <!-- end row -->
+
+
+
+
 
 
 
