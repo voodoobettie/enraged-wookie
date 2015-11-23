@@ -1,13 +1,17 @@
 /* put your css code here */
 
-h1 {font-family: "Helvetica Neue", Helvetica, Arial, "Roboto sans" sans-serif;
+h1 {font-family: "Helvetica Neue", Helvetica, Arial, "Roboto sans", sans-serif;
 	color: #fff; 
-	font-size: 3em;
+	font-size: 2em;
+	text-transform: uppercase;
+	letter-spacing: 3px;
 	}
+
+h3 {color: #fff;}
 
 body {background: #333;}
 
-.carousel { background: #fff; 
+.carousel { background-color: #000; 
 }
 
 .carousel-linked-nav,
@@ -23,6 +27,6 @@ body {background: #333;}
 
 .carousel-caption { 
 	font-size: 1.3em;
-	font-family: "Helvetica Neue", Helvetica, Arial, "Roboto sans" sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Roboto sans", sans-serif;
 	background: #000;
 	opacity: 0.5;}

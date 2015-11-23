@@ -3,12 +3,12 @@
 <head>
 	<title>Animal Photo Gallery</title>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/handlebars-v3.0.3.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/handlebars-v3.0.3.js"></script>
 
 	<script src="AnimalsData.js"> </script>
   <script src="assignment.js"></script>
@@ -22,62 +22,88 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
 
-<div class="container-fluid container-fluid col-md-12">
+<div class="container-fluid">
 
 	<div class="page-header">
-		<h1>Animal Pictures</h1>
+		<h1>Animal Pictures Album</h1>
 	</div>
 
-	<div class="col-xs-2 col-md-4 pull-right" id="search" >
-		<input type="text" name="search	"></input><input type="submit" value="Search"></button>
-	</div>
+<!--search form-->
+	<div class="navbar-form navbar-right" id="search">
+  <!--div class="col-xs-2 col-md-4 pull-right" -->
+  <form id="search-form">
+		<input type="text" name="search" id="searchbox" class="form-control" placeholder="Search...">
+	</form>
+  </div>
 
-      <ul class="nav nav-tabs">
-            <li role="" class="active"><a href="#" id="categories-tab" >Animal Categories</a></li>
-            <li role=""><a href="#" id="photos-tab" >Photos</a></li>
-            <li role=""><a href="#" id="slideshow-tab" >Slideshow</a></li>
+      <ul class="nav nav-pills container-fluid">
+            <li class="active"><a href="#" id="categories-tab" >Animal Categories</a></li>
+            <li><a href="#" id="animals-tab" >Animals</a></li>
+            <li><a href="#" id="slideshow-tab" >Slideshow</a></li>
           </ul>
       <br/><br/>
 
-	
-	<!--empty content div to place photos in via js-->
 
-<div id="content">
+<!--empty content div to place photos in via js - might not be needed? -->
+<div id="content" class="container-fluid" role="main"><!--empty div container --></div> 
 
+</div><!--closing off divs, templates to follow--><!-- end container-->
 
-<script id="category-template" type="text/x-handlebars-template">
-  {{#each category}}
-<div class="row">
-  <div class="col xs-12 col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="{{animals.0.image1}}" alt="Category image">
-      <div class="caption">
-        <h3>{{ name }}</h3>
-        <p>{{ description }}</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
+<!-- photo booth template for showing single image in a modal -->
+<script id="modal-template" type="text/x-handlebars-template">
+<div id="photo_booth" class="modal modal-message fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img style="width:100%" src="{{image2}}" />
+          <h5>{{ name }}</h5>
+          <p>{{ dotdotdot description }}</p>
+          </div>
+        </div>
     </div>
   </div>
-</div>
-  {{/each}}
 </script>
 
-  </div>
 
-
-
-
+<!-- category-template for animal categories -->
 <script id="category-template" type="text/x-handlebars-template">
-{{ #each animal}}
-<p>{{ name }}</p>
-{{ /each }}
+<div class="row container-fluid">
+  {{#each category}}
+  <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="category-thumbnail thumbnail"  data-id="{{@index}}">
+        <img src="{{animals.0.image1}}" alt="Category image">
+          <div class="caption">
+            <h2>{{ name }}</h2>
+            <p>{{ description }}</p>
+            <p><a href="#" class="btn btn-primary" role="button">{{animals.length}} photos</a></p>
+          </div>
+        </div>
+      </div>
+  {{/each}}
+</div>
 </script>
 
+
+<!--Photo gallery for animal images template--> 
+<script id="animals-template" type="text/x-handlebars-template">
+  <div class="row">
+    {{#each animals}}
+    <div class="col-xs-6 col-md-3"> 
+        <div class="animal-thumbnail" data-id="{{@index}}">
+        <img class="crop-img" src="{{image2}}" alt="{{name}}"/> 
+          
+        <div class="caption">
+            <h3>{{name}}</h3>
+            <p>{{description}}</p>
+        </div>
+      </div> <!-- end col -->
+    {{ /each }}
+  </div> <!-- end row -->
+</script>
 
 
 <!--The slideshow view, or as I prefer to call it, the carousel view, wheee!-->
@@ -96,7 +122,6 @@
 
     <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-        <p>test</p>
           {{#each animals}}
             <div class="item {{#if @first}}active{{/if}}">
              <img class="carousel-img" src="{{image1}}" alt=""/> 
@@ -124,12 +149,5 @@
 </div> <!-- end row -->
 
 
-
-
-
-
-
-
-</div><!-- end container-->
 </body>
 </html>
