@@ -53,22 +53,6 @@
 
 </div><!--closing off divs, templates to follow--><!-- end container-->
 
-<!-- photo booth template for showing single image in a modal -->
-<script id="modal-template" type="text/x-handlebars-template">
-<div id="photo_booth" class="modal modal-message fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img style="width:100%" src="{{image2}}" />
-          <h5>{{ name }}</h5>
-          <p>{{ dotdotdot description }}</p>
-          </div>
-        </div>
-    </div>
-  </div>
-</script>
-
-
 <!-- category-template for animal categories -->
 <script id="category-template" type="text/x-handlebars-template">
 <div class="row container-fluid">
@@ -88,21 +72,52 @@
 </script>
 
 
-<!--Photo gallery for animal images template--> 
+<!--Photo gallery for animal type images template--> 
 <script id="animals-template" type="text/x-handlebars-template">
-  <div class="row">
+  <div class="row container-fluid">
     {{#each animals}}
-    <div class="col-xs-6 col-md-3"> 
-        <div class="animal-thumbnail" data-id="{{@index}}">
-        <img class="crop-img" src="{{image2}}" alt="{{name}}"/> 
-          
+    <div class="col-xs-12 col-sm-6 col-md-4"> 
+        <div class="animal-thumbnail thumbnail" data-id="{{@index}}">
+        <img src="{{image2}}" alt="{{name}}"/> 
         <div class="caption">
             <h3>{{name}}</h3>
-            <p>{{description}}</p>
+            <p>{{dotdotdot description}}</p>
         </div>
+      </div>
       </div> <!-- end col -->
-    {{ /each }}
+    {{/each}}
   </div> <!-- end row -->
+</script>
+
+<!-- Template for showing single animal selection-->
+<script id="animal-template" type="text/x-handlebars-template">  
+<div class="row container-fluid">    
+  <div class="col-xs-12 col-sm-6 col-md-4">         
+    <img class="large-img" src="{{image1}}" alt="">                   
+    <div class="caption">            
+      <h3>{{name}}</h3>            
+      <p>{{description}}</p>        
+    </div>      
+  </div>   
+</div> 
+</script>
+
+<!--modal without active content-->
+    <div id="photo_booth" class="modal-lg fade">
+    <!-- modal content -->
+      <div class="modal-content">
+        <div id="modal_info">
+        </div>
+      </div>
+    </div>
+</script>
+
+
+<!--template info to display inside modal-->
+<script id="modal_template" type="text/x-handlebars-template">
+          <img class="large-img" style="width:100%" src="{{image2}}" />
+          <h5>{{ name }}</h5>
+          <p>{{ dotdotdot description }}</p> 
 </script>
 
 
